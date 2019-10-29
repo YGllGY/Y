@@ -189,7 +189,7 @@
     <p>欢迎大家给我留言</p>
     <div class="message" contentEditable='true'></div>
     <div class="But">
-        <img src="images/bba_thumb.gif" class='bq'/><h6 style="color: #efeafa">其实我看不到留言</h6>
+        <img src="images/bba_thumb.gif" class='bq'/><span id="hh" style="color:rgba(227,231,238,0.42);"></span>
         <span class='submit'>发表</span>
         <!--face begin-->
         <div class="face">
@@ -278,6 +278,19 @@
     //从缓存中获取数据并渲染
     let msgBoxList = JSON.parse(window.localStorage.getItem('msgBoxList')) || [];
     innerHTMl(msgBoxList)
+
+    $(function(){
+        setInterval(function () {
+            var str ="<h>其实我看不到留言<h>";
+            $("#hh").prepend(str);
+        }, 3000)
+    });
+
+    $(function(){
+        setInterval(function () {
+            $("#hh").empty();
+        }, 6000)
+    });
 
     //点击小图片，显示表情
     $(".bq").click(function (e) {
