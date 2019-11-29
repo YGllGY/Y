@@ -1,9 +1,7 @@
-<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>聊天</title>
-
     <style type="text/css">
         * {
             margin: 0px;
@@ -280,23 +278,26 @@
 <script type="text/javascript">
 
 
+    var name = null;
+    var img = null;
+    var txt = null;
+
     var goEasy = new GoEasy({
-        host:'hangzhou.goeasy.io', //应用所在的区域地址: 【hangzhou.goeasy.io |singapore.goeasy.io】
+        host: 'hangzhou.goeasy.io', //应用所在的区域地址: 【hangzhou.goeasy.io |singapore.goeasy.io】
         appkey: "BC-ed13b9a913f24571af6ad73c52bf099e", //替换为您的应用appkey
     });
 
     goEasy.subscribe({
-        channel: "my_channel", //替换为您自己的channel
+        channel: "my_channe1", //替换为您自己的channel
         onMessage: function (result) {
-            var name2 = xing2 + ming2;
-            var htm ="<div class='msgBox'><div style='text-align: right' class=\"headUrl\"><div><span class=\"title\">"+name2+"</span><span class=\"time\">"+da+"</span></div><img  src='images/"+img2+".gif' width='50' height='50'></div><div style='text-align: right' class='msgTxt'>"+result.content+"</div>"
-            $(".msgCon").append(htm);
-
+            var res = result.content.split('丨');
+            if (!(name == res[0] && img == res[1])) {
+                var htm = "<div class='msgBox'><div style='text-align: right' class=\"headUrl\"><div><span class=\"title\">" + res[0] + "</span><span class=\"time\">" + da + "</span></div><img  src='images/" + res[1] + ".gif' width='50' height='50'></div><div style='text-align: right' class='msgTxt'>" + res[2] + "</div>"
+                $(".msgCon").append(htm);
+            }
         }
     });
-
     //从缓存中获取数据并渲染
-
 
     //点击小图片，显示表情
     $(".bq").click(function (e) {
@@ -322,56 +323,44 @@
     var da = y + "-" + m + "-" + d;
 
     //随机产生名字
-    var firstname = ["李", "西门", "沈", "张", "上官", "司徒", "欧阳", "轩辕", "西瓜", "冬瓜", "南瓜", "苹果", "草莓", "杨","周"];
-    var nameq = ["彪", "小明", "锐", "翠花", "小小", "撒撒", "熊大", "宝强", "撞地球", "宏博儿", "德华", "哈", "二","臻","绿博儿"];
+    var firstname = ["李", "西门", "沈", "张", "上官", "司徒", "欧阳", "轩辕", "西瓜", "冬瓜", "南瓜", "苹果", "草莓", "杨", "周"];
+    var nameq = ["彪", "小明", "锐", "翠花", "小小", "撒撒", "熊大", "宝强", "撞地球", "宏博儿", "德华", "哈", "二", "臻", "绿博儿"];
     var xing = firstname[Math.floor(Math.random() * (firstname.length))];
-    var xing2 = firstname[Math.floor(Math.random() * (firstname.length))];
     var ming = nameq[Math.floor(Math.random() * (nameq.length))];
-    var ming2 = nameq[Math.floor(Math.random() * (nameq.length))];
 
     //产生随机照片
-    var img = Math.round(Math.random() * 10);
-    var img2 = Math.round(Math.random() * 10);
+    img = Math.round(Math.random() * 10);
 
 
     //点击发表按扭，发表内容
     $("span.submit").click(function () {
-        let txt = $(".message").html(); //获取输入框内容
+        txt = $(".message").html(); //获取输入框内容
         if (!txt) {
             $('.message').focus(); //自动获取焦点
             return;
         }
-        var name = xing + ming;
+        name = xing + ming;
         $('.message').html('') // 清空输入框
 
         //发送消息
         var goEasy = new GoEasy({
-            host:'hangzhou.goeasy.io', //应用所在的区域地址: 【hangzhou.goeasy.io |singapore.goeasy.io】
-            appkey: "BC-ed13b9a913f24571af6ad73c52bf099e", //替换为您的应用appkey
+            host: 'hangzhou.goeasy.io', //应用所在的区域地址: 【hangzhou.goeasy.io |singapore.goeasy.io】
+            appkey: "BC-ed13b9a913f24571af6ad73c52bf099e", //替换为你的应用appkey
         });
 
         goEasy.publish({
-            channel: "my_channe2", //替换为您自己的channel
-            message: txt, //替换为您想要发送的消息内容
+            channel: "my_channe1", //替换为您自己的channel
+            message: name + "丨" + img + "丨" + txt, //替换为你想要发送的消息内容
 
         })
 
-
-
         //渲染html
 
-        var htm ="<div class='msgBox'><div class=\"headUrl\"><img src='images/"+img+".gif' width='50' height='50'><div><span class=\"title\">"+name+"</span><span class=\"time\">"+da+"</span></div></div><div class='msgTxt'>"+txt+"</div>"
+        var htm = "<div class='msgBox'><div class=\"headUrl\"><img src='images/" + img + ".gif' width='50' height='50'><div><span class=\"title\">" + name + "</span><span class=\"time\">" + da + "</span></div></div><div class='msgTxt'>" + txt + "</div>"
         $(".msgCon").append(htm);
 
     });
-
-
 </script>
-
-
 </div>
-
-
-
 </body>
 </html>
