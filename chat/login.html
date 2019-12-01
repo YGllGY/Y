@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>登录注册</title>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/index.js"></script>
+	<link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="./boot/css/bootstrap.min.css">
+	<script src="boot/js/bootstrap.min.js"></script>
+	<script type="text/javascript">$(function(){function o(){$("#myModal").each(function(o){var n=$(this).clone().css("display","block").appendTo("body"),a=Math.round((n.height()-n.find(".modal-content").height())/15);a=0<a?a:0,n.remove(),$(this).find(".modal-content").css("margin-top",a)})}$("#myModal").on("show.bs.modal",o),$("#myModal").modal({backdrop:"static",keyboard:!1,show:!1}),$(window).on("resize",o),$("#login").click(function(){var o=$("#name").val(),n=$("#pass").val();"yyy"==o&&"123"==n?window.location.href="./croom.html":($("#myModal").modal("show"),setTimeout(function(){location.reload()},2500))})})</script>
+</head>
+<body>
+<div class="materialContainer">
+	<div class="box">
+		<div class="title">
+			登录
+		</div>
+		<div class="input">
+			<label for="name">用户名</label><input type="text" name="name" id="name"><span class="spin"></span>
+		</div>
+		<div class="input">
+			<label for="pass">密码</label><input type="password" name="pass" id="pass"><span class="spin"></span>
+		</div>
+		<div class="button login">
+			<button id="login"><span>登录</span><i class="fa fa-check"></i></button>
+		</div>
+		<a href="javascript:" class="pass-forgot">忘记密码？</a>
+	</div>
+	<div class="overbox">
+		<div class="material-button alt-2">
+			<span class="shape"></span>
+		</div>
+		<div class="title">
+			注册
+		</div>
+		<div class="input">
+			<label for="regname">用户名</label><input type="text" name="regname" id="regname"><span class="spin"></span>
+		</div>
+		<div class="input">
+			<label for="regpass">密码</label><input type="password" name="regpass" id="regpass"><span class="spin"></span>
+		</div>
+		<div class="input">
+			<label for="reregpass">确认密码</label><input type="password" name="reregpass" id="reregpass"><span class="spin"></span>
+		</div>
+		<div class="button">
+			<button><span>注册</span></button>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content" style="width:350px">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+			</div>
+			<div class="modal-body" style="height:200px">
+				<form action="" class="form-horizontal" id="f1">
+					<div class="form-group">
+						<div class="col-lg-1">
+						</div>
+						<div class="col-sm-10">
+							<h3 style="color:red">用户名或密码错误!!!</h3>
+							<br>
+							<h3 style="color:#1e90ff">请重新登录</h3>
+						</div>
+						<div class="col-lg-1">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
